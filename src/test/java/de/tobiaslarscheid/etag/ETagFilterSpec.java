@@ -109,4 +109,19 @@ public class ETagFilterSpec {
 		Mockito.verify(responseCtx, never()).setStatusInfo(Response.Status.NOT_MODIFIED);
 		assertThat(headers.containsKey("ETag"), is(false));
 	}
+
+	@Test
+	public void shouldDoNothingForNon200ResponseCode() throws IOException {
+		prepareMocks();
+		MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
+		Mockito.when(responseCtx.getHeaders()).thenReturn(headers);
+
+		Mockito.when(responseCtx.getStatus()).thenReturn(400);
+
+		eTagFilter.filter(requestCtx, responseCtx);
+
+		Mockito.verify(responseCtx, never()).setEntity(null);
+		Mockito.verify(responseCtx, never()).setStatusInfo(Response.Status.NOT_MODIFIED);
+		assertThat(headers.containsKey("ETag"), is(false));
+	}
 }
