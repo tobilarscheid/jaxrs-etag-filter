@@ -7,11 +7,8 @@ import java.lang.annotation.Target;
 
 import javax.ws.rs.NameBinding;
 
-import de.tobiaslarscheid.etag.ETagFilterSpec;
-
 /**
- * Use on JAX-RS Services to add ETags or send 304. See also:
- * {@link ETagFilterSpec}
+ * Use on JAX-RS Services to add ETags or send 304.
  *
  */
 @NameBinding
