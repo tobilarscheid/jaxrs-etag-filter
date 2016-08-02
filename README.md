@@ -4,7 +4,7 @@ JAX-RS cache control finally became easy! Add ``ETags`` to all your responses an
 
 To get started, add the following dependency from jitpack:
 
-https://jitpack.io/#tobilarscheid/jaxrs-etag-filter/v-1.0.0
+https://jitpack.io/#tobilarscheid/jaxrs-etag-filter/v-1.0.1
 
 Make sure the entity you are planning to return from your service implements `ETagged`:
 
