@@ -27,6 +27,7 @@ public class ETagFilter implements ContainerResponseFilter {
 	public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
 			throws IOException {
 		if (responseContext.getStatus() != Response.Status.OK.getStatusCode()) {
+			logger.debug("Response status code is not 200, ignoring.");
 			return;
 		}
 		String clientProvidedETag = requestContext.getHeaderString(HttpHeaders.IF_NONE_MATCH);
@@ -34,9 +35,13 @@ public class ETagFilter implements ContainerResponseFilter {
 		try {
 			entityEtag = getEtagFromResponseEntity(responseContext);
 		} catch (EntityIsNullException e) {
+			logger.debug("Entity is null, ignoring.");
 			return;
 		}
+		logger.trace("Entities ETag is " + entityEtag);
+		logger.trace("ETag from if-none-match-header is " + clientProvidedETag);
 		if (entityEtag.equals(clientProvidedETag)) {
+			logger.trace("EntityEtag equals if-none-match-header, returning 304");
 			responseContext.setEntity(null);
 			responseContext.setStatusInfo(Response.Status.NOT_MODIFIED);
 		}
