@@ -34,6 +34,7 @@ The `ETag` header is automatically added to your Response. If the client sends a
 ## Hints
   - All the functionality is only applied if your Response´s status code is `200`
   - If you don't use class path scanning (hint: [you shouldn't]), you need to list `de.tobiaslarscheid.etag.ETagFilter.class` in your RestAppConfig. (Or whereever else you register your resource classes)
+  - If you want to use `Cache-Control`or `Expires` headers to complete your caching, you should have a look at [JAX-RS Cache-Control Filter](https://github.com/tobilarscheid/jaxrs-cache-control-filter)
 
 License
 ----
