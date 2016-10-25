@@ -2,6 +2,8 @@ package de.tobiaslarscheid.etag;
 
 import java.io.IOException;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.HttpMethod;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
@@ -26,6 +28,12 @@ public class ETagFilter implements ContainerResponseFilter {
 	@Override
 	public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
 			throws IOException {
+		if (!HttpMethod.GET.equals(requestContext.getMethod())) {
+			logger.error("Request's http method was " + requestContext.getMethod() + ", but expected " + HttpMethod.GET
+					+ "! Please make sure you only add @" + ETag.class.getName() + " together with @"
+					+ GET.class.getName() + ". No etag is added!");
+			return;
+		}
 		if (responseContext.getStatus() != Response.Status.OK.getStatusCode()) {
 			logger.debug("Response status code is not 200, ignoring.");
 			return;
