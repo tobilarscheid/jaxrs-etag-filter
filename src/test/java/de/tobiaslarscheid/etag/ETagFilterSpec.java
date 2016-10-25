@@ -7,6 +7,7 @@ import static org.mockito.Mockito.never;
 import java.io.IOException;
 import java.util.Arrays;
 
+import javax.ws.rs.HttpMethod;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.core.MultivaluedHashMap;
@@ -35,6 +36,7 @@ public class ETagFilterSpec {
 	public void prepareMocks() {
 		Mockito.when(entity.getETag()).thenReturn("42");
 		Mockito.when(requestCtx.getHeaderString("If-None-Match")).thenReturn("42");
+		Mockito.when(requestCtx.getMethod()).thenReturn(HttpMethod.GET);
 		Mockito.when(responseCtx.getEntity()).thenReturn(entity);
 		Mockito.when(responseCtx.getStatus()).thenReturn(200);
 	}
@@ -117,6 +119,21 @@ public class ETagFilterSpec {
 		Mockito.when(responseCtx.getHeaders()).thenReturn(headers);
 
 		Mockito.when(responseCtx.getStatus()).thenReturn(400);
+
+		eTagFilter.filter(requestCtx, responseCtx);
+
+		Mockito.verify(responseCtx, never()).setEntity(null);
+		Mockito.verify(responseCtx, never()).setStatusInfo(Response.Status.NOT_MODIFIED);
+		assertThat(headers.containsKey("ETag"), is(false));
+	}
+
+	@Test
+	public void shouldDoNothingForNonGETRequest() throws IOException {
+		prepareMocks();
+		MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
+		Mockito.when(responseCtx.getHeaders()).thenReturn(headers);
+
+		Mockito.when(requestCtx.getMethod()).thenReturn(HttpMethod.POST);
 
 		eTagFilter.filter(requestCtx, responseCtx);
 
