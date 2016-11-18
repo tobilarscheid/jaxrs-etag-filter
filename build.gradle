@@ -1,16 +1,25 @@
+plugins {
+    id 'pl.allegro.tech.build.axion-release' version '1.4.1'
+}
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 
-
 group 'de.tobiaslarscheid'
 
 repositories {
 	jcenter()
-    mavenCentral()
-
+  mavenCentral()
 }
+
+scmVersion {
+    tag {
+        prefix = 'v'
+    }
+}
+
+project.version = scmVersion.version
 
 dependencies {
 	compile 'org.slf4j:slf4j-api:1.7.21'
