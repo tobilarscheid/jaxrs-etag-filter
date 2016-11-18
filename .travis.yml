@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
 
 before_script:
-  - git checkout -b master origin/master
+  - git checkout master
 
 script:
   - ./gradlew createRelease
