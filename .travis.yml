@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
 
 before_script:
-  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && git checkout master'
+  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && git checkout master || echo "feature branch"'
 
 script:
   - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && ./gradlew createRelease'
