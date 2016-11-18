@@ -6,7 +6,7 @@ before_script:
   - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && git checkout master || echo "feature branch"'
 
 script:
-  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && ./gradlew createRelease'
+  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && ./gradlew createRelease || echo "feature branch"'
   - ./gradlew assemble
   - ./gradlew check
 
