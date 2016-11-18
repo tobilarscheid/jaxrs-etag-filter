@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
 
 before_install:
-  - curl https://www.jpm4j.org/install/script | sh && jpm install com.codacy:codacy-coverage-reporter:assembly
+  - curl http://www.jpm4j.org/install/script | sh && jpm install com.codacy:codacy-coverage-reporter:assembly
 
 before_script:
   - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && git checkout master || echo "feature branch"'
