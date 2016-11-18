@@ -20,6 +20,12 @@ scmVersion {
     }
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
 project.version = scmVersion.version
 
 dependencies {
