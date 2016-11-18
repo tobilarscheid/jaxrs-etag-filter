@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/tobilarscheid/jaxrs-etag-filter.svg?branch=master)](https://travis-ci.org/tobilarscheid/jaxrs-etag-filter)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bb6e22e1a20f409d84c5ea8cf3d8e2e1)](https://www.codacy.com/app/tobilarscheid/jaxrs-etag-filter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tobilarscheid/jaxrs-etag-filter&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/bb6e22e1a20f409d84c5ea8cf3d8e2e1)](https://www.codacy.com/app/tobilarscheid/jaxrs-etag-filter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tobilarscheid/jaxrs-etag-filter&amp;utm_campaign=Badge_Coverage)
+
 # JAX-RS ETag Filter
 
 JAX-RS cache control finally became easy! Add ``ETags`` to all your responses and send ``304 Not Modified`` whenever a client sends matching ``ETags`` in ``If-None-Modified`` headers - with just one annotation!
