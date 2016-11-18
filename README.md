@@ -6,9 +6,9 @@
 
 JAX-RS cache control finally became easy! Add ``ETags`` to all your responses and send ``304 Not Modified`` whenever a client sends matching ``ETags`` in ``If-None-Modified`` headers - with just one annotation!
 
-To get started, add the following dependency from jitpack:
+To get started, get the latest version from jitpack:
 
-https://jitpack.io/#tobilarscheid/jaxrs-etag-filter/v-1.0.2
+https://jitpack.io/#tobilarscheid/jaxrs-etag-filter/
 
 Make sure the entity you are planning to return from your service implements `ETagged`:
 
