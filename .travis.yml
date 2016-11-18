@@ -15,7 +15,7 @@ script:
   - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && ./gradlew createRelease || echo "feature branch"'
   - ./gradlew assemble
   - ./gradlew check
-  - codacy-coverage-reporter -l Java
+  - ~/jpm/bin/codacy-coverage-reporter -l Java
 
 after_success:
   - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && git config --global user.email "builds@travis-ci.com" && git config --global user.name "Travis CI" && git push -q --tags https://$GITHUB_OAUTH_TOKEN@github.com/tobilarscheid/jaxrs-etag-filter > /dev/null 2>&1 || echo "feature branch"'
