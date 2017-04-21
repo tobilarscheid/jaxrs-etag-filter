@@ -38,7 +38,7 @@ public class ETagFilterSpec {
 		Mockito.when(requestCtx.getHeaderString("If-None-Match")).thenReturn("42");
 		Mockito.when(requestCtx.getMethod()).thenReturn(HttpMethod.GET);
 		Mockito.when(responseCtx.getEntity()).thenReturn(entity);
-		Mockito.when(responseCtx.getStatus()).thenReturn(200);
+		Mockito.when(responseCtx.getStatus()).thenReturn(201);
 	}
 
 	@Test
